@@ -5,19 +5,35 @@ public class Sort {
 	
 	public static void start() {
 		createDatabase();
+		long start_time = System.currentTimeMillis();
 		bubbleSort();
-		imprime();
+		//insertionSort();
+		long end_time = System.currentTimeMillis();
+		//imprime();
+		System.out.println(end_time-start_time+" ms.");
 		System.out.println(confirmSort());
+		
 	}
 	public static void createDatabase() {
-		data = new int[100];
+		data = new int[100000];
 		for(int i = 0; i < data.length; i++) {
 			data[i] = (int)(Math.random()*data.length);
 		}
 	}
 	public static void bubbleSort() {
 		for(int i = 0; i < data.length;i++) {
-			for(int j = i; j < data.length;j++) {
+			for(int j = i+1; j < data.length;j++) {
+				if(data[i]>data[j]) {
+					int aux = data[i];
+					data[i] = data[j];
+					data[j] = aux;
+				}
+			}
+		}
+	}
+	public static void insertionSort() {
+		for(int i = 0; i < data.length;i++) {
+			for(int j = 0; j < data.length;j++) {
 				if(data[i]>data[j]) {
 					int aux = data[i];
 					data[i] = data[j];
